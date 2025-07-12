@@ -1,8 +1,8 @@
-package com.sd.careconnect.applicationservice.controller;
+package com.sd.careconnect.jobservice.controller;
 
-import com.sd.careconnect.applicationservice.entity.JobApplication;
-import com.sd.careconnect.applicationservice.Enums.JobApplicationStatus;
-import com.sd.careconnect.applicationservice.service.JobApplicationService;
+import com.sd.careconnect.jobservice.entity.JobApplication;
+import com.sd.careconnect.jobservice.Enums.JobApplicationStatus;
+import com.sd.careconnect.jobservice.service.JobApplicationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

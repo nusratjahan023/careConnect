@@ -1,6 +1,6 @@
-package com.sd.careconnect.applicationservice.repository;
+package com.sd.careconnect.jobservice.repository;
 
-import com.sd.careconnect.applicationservice.entity.JobApplication;
+import com.sd.careconnect.jobservice.entity.JobApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

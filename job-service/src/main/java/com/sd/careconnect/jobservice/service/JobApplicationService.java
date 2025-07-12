@@ -1,8 +1,8 @@
-package com.sd.careconnect.applicationservice.service;
+package com.sd.careconnect.jobservice.service;
 
-import com.sd.careconnect.applicationservice.entity.JobApplication;
-import com.sd.careconnect.applicationservice.Enums.JobApplicationStatus;
-import com.sd.careconnect.applicationservice.repository.JobApplicationRepository;
+import com.sd.careconnect.jobservice.entity.JobApplication;
+import com.sd.careconnect.jobservice.Enums.JobApplicationStatus;
+import com.sd.careconnect.jobservice.repository.JobApplicationRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
-package com.sd.careconnect.applicationservice.entity;
+package com.sd.careconnect.jobservice.entity;
 
-import com.sd.careconnect.applicationservice.Enums.JobApplicationStatus;
+import com.sd.careconnect.jobservice.Enums.JobApplicationStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
