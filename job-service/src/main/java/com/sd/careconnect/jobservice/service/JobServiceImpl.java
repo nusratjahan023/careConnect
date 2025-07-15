@@ -1,5 +1,7 @@
 package com.sd.careconnect.jobservice.service;
 
+import com.sd.careconnect.jobservice.Enums.JobApplicationStatus;
+import com.sd.careconnect.jobservice.Enums.JobStatus;
 import com.sd.careconnect.jobservice.entity.JobPost;
 import com.sd.careconnect.jobservice.repository.JobPostRepository;
 import org.springframework.stereotype.Service;
@@ -12,8 +14,11 @@ public class JobServiceImpl implements JobService {
 
     private final JobPostRepository jobRepository;
 
-    public JobServiceImpl(JobPostRepository jobRepository) {
+    private final  JobApplicationService jobApplicationService;
+
+    public JobServiceImpl(JobPostRepository jobRepository, JobApplicationService jobApplicationService) {
         this.jobRepository = jobRepository;
+        this.jobApplicationService = jobApplicationService;
     }
 
     @Override
@@ -48,5 +53,18 @@ public class JobServiceImpl implements JobService {
     @Override
     public void deleteJob(Long id) {
         jobRepository.deleteById(id);
+    }
+
+    @Override
+    public JobPost assignCaregiver(Long jobId, Long careGiverId) {
+        jobRepository.findById(jobId).map(existing -> {
+            existing.setAssignedUserId(careGiverId);
+            existing.setStatus(JobStatus.ASSIGNED);
+
+            jobApplicationService.updateStatus(jobApplicationService.getJobApplicationByJobPostIdAndCaregiverId(jobId, careGiverId), JobApplicationStatus.APPROVED);
+
+            return jobRepository.save(existing);
+        }).orElseThrow(() -> new RuntimeException("Unable to assign Caregiver, Job not found"));
+        return null;
     }
 }

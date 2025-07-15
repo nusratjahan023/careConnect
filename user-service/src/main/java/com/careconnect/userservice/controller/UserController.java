@@ -1,9 +1,7 @@
 package com.careconnect.userservice.controller;
 
-import com.careconnect.userservice.entity.AppUser;
-import com.careconnect.userservice.entity.AppUserDTO;
-import com.careconnect.userservice.entity.UserDetails;
-import com.careconnect.userservice.entity.UserDetailsDTO;
+import com.careconnect.userservice.entity.*;
+import com.careconnect.userservice.service.CertificationService;
 import com.careconnect.userservice.service.UserDetailsService;
 import com.careconnect.userservice.service.UserServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -21,10 +19,12 @@ public class UserController {
     private final UserServiceImpl userServiceImpl;
 
     private final UserDetailsService userDetailsService;
+    private final CertificationService certificationService;
 
-    public UserController(UserServiceImpl userServiceImpl, UserDetailsService userDetailsService) {
+    public UserController(UserServiceImpl userServiceImpl, UserDetailsService userDetailsService, CertificationService certificationService) {
         this.userServiceImpl = userServiceImpl;
         this.userDetailsService = userDetailsService;
+        this.certificationService =certificationService;
     }
 
 //    @GetMapping("/profile/{id}")
@@ -37,6 +37,18 @@ public class UserController {
     public ResponseEntity<Void> saveUserDetails(@PathVariable Long id, @RequestBody UserDetailsDTO dto) {
         userDetailsService.saveUserDetails(id, dto);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/certificate")
+    public ResponseEntity<CertificationDto> saveCertificate(@RequestBody CertificationDto dto) {
+        CertificationDto saved = certificationService.saveCertificate(dto);
+        return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/certificate/{id}")
+    public ResponseEntity<CertificationDto> updateCertificate(@RequestBody CertificationDto dto) {
+        CertificationDto updated = certificationService.updateCertificate(dto);
+        return ResponseEntity.ok(updated);
     }
 
     @GetMapping
@@ -85,6 +97,12 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         boolean deleted = userServiceImpl.deleteUser(id);
+        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/certification/{id}")
+    public ResponseEntity<Void> deleteCertification(@PathVariable Long id) {
+        boolean deleted = certificationService.deleteCertification(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

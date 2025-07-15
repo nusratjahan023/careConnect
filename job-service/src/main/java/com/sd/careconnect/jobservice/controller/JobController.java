@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -109,5 +110,15 @@ public class JobController {
     public ResponseEntity<Void> deleteApplication(@PathVariable Long id) {
         boolean deleted = jobApplicationService.deleteApplication(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/accept-caregiver")
+    public ResponseEntity<?> acceptCaregiver(@RequestBody Map<String, Long> data) {
+        Long jobId = data.get("jobId");
+        Long careGiverId = data.get("careGiverId");
+
+        JobPost jobPost = jobService.assignCaregiver(jobId, careGiverId);
+
+        return ResponseEntity.ok(jobPost);
     }
 }

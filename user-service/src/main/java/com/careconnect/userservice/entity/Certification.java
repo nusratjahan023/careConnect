@@ -1,22 +1,22 @@
 package com.careconnect.userservice.entity;
 
+import com.careconnect.userservice.entity.UserDetails;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
-@Table(name = "certification")
 public class Certification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private Date completionDate;
 
-    public Certification(String name, Date completionDate) {
-        this.name = name;
-        this.completionDate = completionDate;
-    }
+    private String name;
+    private String completionDate;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_details_id")
+    private UserDetails userDetails;
 
     public Long getId() {
         return id;
@@ -34,11 +34,19 @@ public class Certification {
         this.name = name;
     }
 
-    public Date getCompletionDate() {
+    public String getCompletionDate() {
         return completionDate;
     }
 
-    public void setCompletionDate(Date completionDate) {
+    public void setCompletionDate(String completionDate) {
         this.completionDate = completionDate;
+    }
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 }

@@ -53,6 +53,14 @@ public class JobApplicationService {
         return optional;
     }
 
+    public Optional<JobApplication> updateStatus(JobApplication jobApplication, JobApplicationStatus newStatus) {
+            jobApplication.setStatus(newStatus);
+            JobApplication saved = repository.save(jobApplication);
+
+            return Optional.of(saved);
+    }
+
+
     public Optional<JobApplication> getJobApplicationById(Long id) {
         return repository.findById(id);
     }

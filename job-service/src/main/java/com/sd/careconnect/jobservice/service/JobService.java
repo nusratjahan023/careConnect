@@ -11,4 +11,5 @@ public interface JobService {
     Optional<JobPost> getJobById(Long id);
     JobPost updateJob(Long id, JobPost updatedJob);
     void deleteJob(Long id);
+    JobPost assignCaregiver(Long jobId, Long careGiverId);
 }
