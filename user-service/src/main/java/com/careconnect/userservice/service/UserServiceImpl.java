@@ -1,6 +1,9 @@
 package com.careconnect.userservice.service;
 
 import com.careconnect.userservice.entity.AppUser;
+import com.careconnect.userservice.entity.AppUserDTO;
+import com.careconnect.userservice.entity.UserDetails;
+import com.careconnect.userservice.entity.UserDetailsDTO;
 import com.careconnect.userservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +47,6 @@ public class UserServiceImpl implements UserService {
             user.setFirstName(userDetails.getFirstName());
             user.setLastName(userDetails.getLastName());
             user.setEmail(userDetails.getEmail());
-            user.setRole(userDetails.getRole());
             // Add other fields as needed
             return userRepository.save(user);
         }
@@ -59,4 +61,31 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    public AppUserDTO getUserProfile(Long id) {
+        AppUser user = userRepository.findById(id).orElseThrow();
+
+        AppUserDTO dto = new AppUserDTO();
+        dto.setFirstName(user.getFirstName());
+        dto.setEmail(user.getEmail());
+        dto.setPhone(user.getPhone());
+        dto.setRole(user.getRole());
+        dto.setLastName(user.getLastName());
+        dto.setAddress(user.getAddress());
+
+        UserDetails ud = user.getUserDetails();
+        if (ud != null) {
+            UserDetailsDTO udd = new UserDetailsDTO();
+            udd.setBio(ud.getBio());
+            udd.setCertifications(ud.getCertifications());
+            udd.setSkills(ud.getSkills());
+            udd.setJobExperiences(ud.getJobExperiences());
+            udd.setEducations(ud.getEducations());
+            udd.setLanguages(ud.getLanguages());
+            dto.setUserDetails(udd);
+        }
+
+        return dto;
+    }
+
 }

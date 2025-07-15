@@ -40,6 +40,10 @@ public class JobApplicationService {
         return repository.findByCaregiverId(caregiverId);
     }
 
+    public JobApplication getJobApplicationByJobPostIdAndCaregiverId(Long jobPostId, Long caregiverId) {
+        return repository.findByJobPostIdAndCaregiverId(jobPostId, caregiverId);
+    }
+
     public Optional<JobApplication> updateStatus(Long id, JobApplicationStatus newStatus) {
         Optional<JobApplication> optional = repository.findById(id);
         optional.ifPresent(app -> {

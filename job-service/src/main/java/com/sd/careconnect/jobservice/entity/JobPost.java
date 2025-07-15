@@ -19,16 +19,19 @@ public class JobPost {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String location;
+    private String requirements;
 
     @Enumerated(EnumType.STRING)
     private JobStatus status;
 
     private Long assignedUserId;
 
+    private Double hourlyRate; // New field added
+
     // Constructors
     public JobPost() {}
 
-    public JobPost(Long clientId, String title, String description, LocalDateTime startTime, LocalDateTime endTime, String location, JobStatus status) {
+    public JobPost(Long clientId, String title, String description, LocalDateTime startTime, LocalDateTime endTime, String location, JobStatus status, Double hourlyRate) {
         this.clientId = clientId;
         this.title = title;
         this.description = description;
@@ -36,6 +39,7 @@ public class JobPost {
         this.endTime = endTime;
         this.location = location;
         this.status = status;
+        this.hourlyRate = hourlyRate;
     }
 
     public Long getId() {
@@ -108,5 +112,29 @@ public class JobPost {
 
     public void setAssignedUserId(Long assignedUserId) {
         this.assignedUserId = assignedUserId;
+    }
+
+    public Double getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public void setHourlyRate(Double hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
+
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getRequirements() {
+        return requirements;
+    }
+
+    public void setRequirements(String requirements) {
+        this.requirements = requirements;
     }
 }
