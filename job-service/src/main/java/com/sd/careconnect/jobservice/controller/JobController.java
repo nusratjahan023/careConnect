@@ -1,6 +1,7 @@
 package com.sd.careconnect.jobservice.controller;
 
 import com.sd.careconnect.jobservice.Enums.JobApplicationStatus;
+import com.sd.careconnect.jobservice.Enums.JobStatus;
 import com.sd.careconnect.jobservice.entity.JobApplication;
 import com.sd.careconnect.jobservice.entity.JobPost;
 import com.sd.careconnect.jobservice.entity.JobPostDTO;
@@ -43,7 +44,6 @@ public class JobController {
                 .map(jobPost -> {
                     List<JobApplication> applications = jobApplicationService.getApplicationsByJobPostId(id);
                     JobPostDTO dto = new JobPostDTO("Job found", true, false, null);
-                    // Copy jobPost fields into dto
                     dto.setId(jobPost.getId());
                     dto.setTitle(jobPost.getTitle());
                     dto.setLocation(jobPost.getLocation());
@@ -54,9 +54,16 @@ public class JobController {
                     dto.setHourlyRate(jobPost.getHourlyRate());
                     dto.setClientId(jobPost.getClientId());
                     dto.setApplications(applications);
-                    // Add additional logic for flags
-                    dto.setCanApply(true); // or custom logic
-                    dto.setCanEdit(true); // or custom logic
+                    dto.setStatus(jobPost.getStatus());
+                    dto.setAssignedUserId(jobPost.getAssignedUserId());
+                    dto.setCanApply(jobPost.getStatus() == JobStatus.OPEN); // or custom logic
+                    dto.setCanEdit(true);
+                    dto.setCanViewApplicantList(jobPost.getStatus() == JobStatus.OPEN);
+                    dto.setCanComplete(jobPost.getStatus() == JobStatus.ASSIGNED);
+                    dto.setCanMakePayment(jobPost.getStatus() == JobStatus.COMPLETED);
+                    dto.setPaymentStatus(jobPost.getPaymentStatus());
+                    dto.setCanAddReview(jobPost.getStatus() == JobStatus.COMPLETED);
+                    dto.setCanViewPaymentStatus(jobPost.getStatus() == JobStatus.COMPLETED);
                     return ResponseEntity.ok(dto);
                 })
                 .orElseGet(() -> {
@@ -80,6 +87,13 @@ public class JobController {
     public ResponseEntity<JobApplication> applyToJob(@RequestParam Long jobPostId,
                                                      @RequestParam Long caregiverId) {
         JobApplication application = jobApplicationService.applyToJob(jobPostId, caregiverId);
+        return ResponseEntity.ok(application);
+    }
+
+    @PostMapping("/complete")
+    public ResponseEntity<JobApplication> completeJob(@RequestParam Long jobPostId,
+                                                     @RequestParam Long caregiverId) {
+        JobApplication application = jobService.completeJob(jobPostId, caregiverId);
         return ResponseEntity.ok(application);
     }
 

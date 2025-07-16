@@ -1,5 +1,6 @@
 package com.sd.careconnect.jobservice.service;
 
+import com.sd.careconnect.jobservice.entity.JobApplication;
 import com.sd.careconnect.jobservice.entity.JobPost;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface JobService {
     JobPost updateJob(Long id, JobPost updatedJob);
     void deleteJob(Long id);
     JobPost assignCaregiver(Long jobId, Long careGiverId);
+
+    JobApplication completeJob(Long jobPostId, Long caregiverId);
 }

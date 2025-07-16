@@ -2,6 +2,7 @@ package com.sd.careconnect.jobservice.service;
 
 import com.sd.careconnect.jobservice.entity.JobApplication;
 import com.sd.careconnect.jobservice.Enums.JobApplicationStatus;
+import com.sd.careconnect.jobservice.entity.JobPost;
 import com.sd.careconnect.jobservice.repository.JobApplicationRepository;
 import org.springframework.stereotype.Service;
 

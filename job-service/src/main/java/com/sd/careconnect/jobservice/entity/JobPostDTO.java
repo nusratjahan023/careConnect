@@ -1,5 +1,7 @@
 package com.sd.careconnect.jobservice.entity;
 
+import com.sd.careconnect.jobservice.Enums.JobStatus;
+
 import java.util.List;
 
 public class JobPostDTO extends JobPost{
@@ -9,17 +11,20 @@ public class JobPostDTO extends JobPost{
     private  String globalErrorMessage;
     private boolean canApply;
     private boolean canEdit;
+    private  boolean canComplete;
+    private boolean canMakePayment;
+    private boolean canAddReview;
+    private boolean canClose;
+    private boolean canViewApplicantList;
+    private boolean canViewPaymentStatus;
     private List<JobApplication> applications;
 
-    // Constructors
     public JobPostDTO (String message, boolean success, boolean globalError, String globalErrorMessage) {
         this.message = message;
         this.success = success;
         this.globalError = globalError;
         this.globalErrorMessage = globalErrorMessage;
     }
-
-    // Getters and Setters
 
     public String getMessage() {
         return message;
@@ -75,6 +80,54 @@ public class JobPostDTO extends JobPost{
 
     public void setApplications(List<JobApplication> applications) {
         this.applications = applications;
+    }
+
+    public boolean isCanViewApplicantList() {
+        return canViewApplicantList;
+    }
+
+    public void setCanViewApplicantList(boolean canViewApplicantList) {
+        this.canViewApplicantList = canViewApplicantList;
+    }
+
+    public boolean isCanComplete() {
+        return canComplete;
+    }
+
+    public void setCanComplete(boolean canComplete) {
+        this.canComplete = canComplete;
+    }
+
+    public boolean isCanMakePayment() {
+        return canMakePayment;
+    }
+
+    public void setCanMakePayment(boolean canMakePayment) {
+        this.canMakePayment = canMakePayment;
+    }
+
+    public boolean isCanAddReview() {
+        return canAddReview;
+    }
+
+    public void setCanAddReview(boolean canAddReview) {
+        this.canAddReview = canAddReview;
+    }
+
+    public boolean isCanClose() {
+        return canClose;
+    }
+
+    public void setCanClose(boolean canClose) {
+        this.canClose = canClose;
+    }
+
+    public boolean isCanViewPaymentStatus() {
+        return canViewPaymentStatus;
+    }
+
+    public void setCanViewPaymentStatus(boolean canViewPaymentStatus) {
+        this.canViewPaymentStatus = canViewPaymentStatus;
     }
 }
 

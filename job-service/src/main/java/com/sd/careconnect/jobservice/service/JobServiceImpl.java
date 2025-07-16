@@ -2,6 +2,7 @@ package com.sd.careconnect.jobservice.service;
 
 import com.sd.careconnect.jobservice.Enums.JobApplicationStatus;
 import com.sd.careconnect.jobservice.Enums.JobStatus;
+import com.sd.careconnect.jobservice.entity.JobApplication;
 import com.sd.careconnect.jobservice.entity.JobPost;
 import com.sd.careconnect.jobservice.repository.JobPostRepository;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public JobPost createJob(JobPost jobPost) {
+        jobPost.setStatus(JobStatus.OPEN);
         return jobRepository.save(jobPost);
     }
 
@@ -65,6 +67,16 @@ public class JobServiceImpl implements JobService {
 
             return jobRepository.save(existing);
         }).orElseThrow(() -> new RuntimeException("Unable to assign Caregiver, Job not found"));
+        return null;
+    }
+
+    public JobApplication completeJob(Long jobPostId, Long caregiverId) {
+        jobRepository.findById(jobPostId).map(existing -> {
+            existing.setAssignedUserId(caregiverId);
+            existing.setStatus(JobStatus.COMPLETED);
+
+            return jobRepository.save(existing);
+        }).orElseThrow(() -> new RuntimeException("Unable to complete job, Job not found"));
         return null;
     }
 }

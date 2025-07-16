@@ -1,6 +1,7 @@
 package com.sd.careconnect.jobservice.entity;
 
 import com.sd.careconnect.jobservice.Enums.JobStatus;
+import com.sd.careconnect.jobservice.Enums.PaymentStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -26,9 +27,10 @@ public class JobPost {
 
     private Long assignedUserId;
 
-    private Double hourlyRate; // New field added
+    private Double hourlyRate;
 
-    // Constructors
+    private PaymentStatus paymentStatus;
+
     public JobPost() {}
 
     public JobPost(Long clientId, String title, String description, LocalDateTime startTime, LocalDateTime endTime, String location, JobStatus status, Double hourlyRate) {
@@ -136,5 +138,13 @@ public class JobPost {
 
     public void setRequirements(String requirements) {
         this.requirements = requirements;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 }
