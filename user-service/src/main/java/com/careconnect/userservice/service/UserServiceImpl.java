@@ -1,5 +1,6 @@
 package com.careconnect.userservice.service;
 
+import com.careconnect.userservice.Enums.Role;
 import com.careconnect.userservice.entity.AppUser;
 import com.careconnect.userservice.entity.AppUserDTO;
 import com.careconnect.userservice.entity.UserDetails;
@@ -30,7 +31,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<AppUser> getUsersByRole(String role) {
+    public List<AppUser> getUsersByRole(String roleString) {
+        Role role = Role.valueOf(roleString.toUpperCase());
         return userRepository.findByRole(role);
     }
 
@@ -47,7 +49,6 @@ public class UserServiceImpl implements UserService {
             user.setFirstName(userDetails.getFirstName());
             user.setLastName(userDetails.getLastName());
             user.setEmail(userDetails.getEmail());
-            // Add other fields as needed
             return userRepository.save(user);
         }
         return null;
@@ -72,6 +73,7 @@ public class UserServiceImpl implements UserService {
         dto.setRole(user.getRole());
         dto.setLastName(user.getLastName());
         dto.setAddress(user.getAddress());
+        dto.setRating(user.getRating());
 
         UserDetails ud = user.getUserDetails();
         if (ud != null) {

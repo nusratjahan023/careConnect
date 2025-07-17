@@ -15,15 +15,17 @@ public class Review {
     private Long reviewedById;
     private String description;
     private Date submittedOn;
+    private float rating;
 
     public Review() {
     }
 
-    public Review(Long reviewForId, Long reviewedById, String description, Date submittedOn) {
+    public Review(Long reviewForId, Long reviewedById, String description, Date submittedOn, float rating) {
         this.reviewForId = reviewForId;
         this.reviewedById = reviewedById;
         this.description = description;
         this.submittedOn = submittedOn;
+        this.rating = rating;
     }
 
     public Long getId() {
@@ -64,5 +66,13 @@ public class Review {
 
     public void setSubmittedOn(Date submittedOn) {
         this.submittedOn = submittedOn;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 }

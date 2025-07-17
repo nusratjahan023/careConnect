@@ -2,6 +2,7 @@ package com.careconnect.userservice.controller;
 
 import com.careconnect.userservice.entity.*;
 import com.careconnect.userservice.service.*;
+import com.careconnect.userservice.service.impl.ReviewServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +21,15 @@ public class UserController {
     private final CertificationService certificationService;
     private final LanguageService languageService;
     private final EducationServiceImpl educationService;
+    private final ReviewServiceImpl reviewService;
 
-    public UserController(UserServiceImpl userServiceImpl, UserDetailsService userDetailsService, CertificationService certificationService, LanguageService languageService, EducationServiceImpl educationService) {
+    public UserController(UserServiceImpl userServiceImpl, UserDetailsService userDetailsService, CertificationService certificationService, LanguageService languageService, EducationServiceImpl educationService, ReviewServiceImpl reviewService) {
         this.userServiceImpl = userServiceImpl;
         this.userDetailsService = userDetailsService;
         this.certificationService =certificationService;
         this.languageService = languageService;
         this.educationService = educationService;
+        this.reviewService = reviewService;
     }
 
 //    @GetMapping("/profile/{id}")
@@ -75,6 +78,17 @@ public class UserController {
     public ResponseEntity<EducationDto> updateEducation(@PathVariable Long id, @RequestBody EducationDto dto) {
         EducationDto updated = educationService.updateEducation(id, dto);
         return ResponseEntity.ok(updated);
+    }
+
+    @GetMapping("/reviews/{userId}")
+    public List<Review> getReviewsByUser(@PathVariable Long userId) {
+        return reviewService.getReviewsByUser(userId);
+    }
+
+    @PostMapping("/reviews")
+    public ResponseEntity<ReviewDto> saveReview(@RequestBody ReviewDto dto) {
+        ReviewDto saved = reviewService.saveReview(dto);
+        return ResponseEntity.ok(saved);
     }
 
     @GetMapping

@@ -47,10 +47,12 @@ public class AppUser {
 
     private float rating;
 
+    private Integer totalReviews = 0;
+
     public AppUser() {
     }
 
-    public AppUser(String firstName, String lastName, String email, String phone, String address, Role role, UserDetails userDetails, List<Review> reviews, float rating, String password, String confirmPassword) {
+    public AppUser(String firstName, String lastName, String email, String phone, String address, Role role, UserDetails userDetails, List<Review> reviews, float rating, Integer totalReviews, String password, String confirmPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -62,6 +64,7 @@ public class AppUser {
         this.rating = rating;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        this.totalReviews = totalReviews;
     }
 
     public Long getId() {
@@ -159,4 +162,13 @@ public class AppUser {
     public void setRating(float rating) {
         this.rating = rating;
     }
+
+    public Integer getTotalReviews() {
+        return totalReviews;
+    }
+
+    public void setTotalReviews(Integer totalReviews) {
+        this.totalReviews = totalReviews;
+    }
+
 }

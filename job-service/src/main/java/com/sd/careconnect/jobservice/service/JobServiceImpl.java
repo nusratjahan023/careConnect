@@ -46,7 +46,6 @@ public class JobServiceImpl implements JobService {
             existing.setStartTime(updatedJob.getStartTime());
             existing.setEndTime(updatedJob.getEndTime());
             existing.setLocation(updatedJob.getLocation());
-            existing.setStatus(updatedJob.getStatus());
             existing.setAssignedUserId(updatedJob.getAssignedUserId());
             return jobRepository.save(existing);
         }).orElseThrow(() -> new RuntimeException("Job not found"));

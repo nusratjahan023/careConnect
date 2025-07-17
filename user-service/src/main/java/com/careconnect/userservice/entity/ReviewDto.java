@@ -8,16 +8,18 @@ public class ReviewDto {
     private Long reviewedById;
     private String description;
     private Date submittedOn;
+    private float rating;
 
     public ReviewDto() {
     }
 
-    public ReviewDto(Long id, Long reviewForId, Long reviewedById, String description, Date submittedOn) {
+    public ReviewDto(Long id, Long reviewForId, Long reviewedById, String description, Date submittedOn, float rating) {
         this.id = id;
         this.reviewForId = reviewForId;
         this.reviewedById = reviewedById;
         this.description = description;
         this.submittedOn = submittedOn;
+        this.rating = rating;
     }
 
     public Long getId() {
@@ -58,5 +60,13 @@ public class ReviewDto {
 
     public void setSubmittedOn(Date submittedOn) {
         this.submittedOn = submittedOn;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 }
