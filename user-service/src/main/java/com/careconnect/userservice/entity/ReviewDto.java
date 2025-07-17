@@ -1,25 +1,19 @@
 package com.careconnect.userservice.entity;
 
-import jakarta.persistence.*;
-
 import java.util.Date;
 
-@Entity
-@Table(name = "review")
-public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ReviewDto {
     private Long id;
-
     private Long reviewForId;
     private Long reviewedById;
     private String description;
     private Date submittedOn;
 
-    public Review() {
+    public ReviewDto() {
     }
 
-    public Review(Long reviewForId, Long reviewedById, String description, Date submittedOn) {
+    public ReviewDto(Long id, Long reviewForId, Long reviewedById, String description, Date submittedOn) {
+        this.id = id;
         this.reviewForId = reviewForId;
         this.reviewedById = reviewedById;
         this.description = description;

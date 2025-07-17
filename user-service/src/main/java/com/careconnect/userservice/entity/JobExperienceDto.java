@@ -1,34 +1,16 @@
 package com.careconnect.userservice.entity;
 
-import jakarta.persistence.*;
-
 import java.util.Date;
 
-@Entity
-@Table(name = "job_experience")
-public class JobExperience {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class JobExperienceDto {
     private Long id;
-
     private String institution;
     private String degree;
     private Date startDate;
     private Date endDate;
     private String designation;
     private String description;
-
-    public JobExperience() {
-    }
-
-    public JobExperience(String institution, String degree, Date startDate, Date endDate, String designation, String description) {
-        this.institution = institution;
-        this.degree = degree;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.designation = designation;
-        this.description = description;
-    }
+    private Long userId;
 
     public Long getId() {
         return id;

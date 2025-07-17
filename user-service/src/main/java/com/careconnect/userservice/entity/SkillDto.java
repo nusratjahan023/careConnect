@@ -1,26 +1,17 @@
 package com.careconnect.userservice.entity;
 
-
 import com.careconnect.userservice.Enums.ProficiencyType;
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "skill")
-public class Skill {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SkillDto {
     private Long id;
-
     private String name;
-
-    @Enumerated(EnumType.STRING)
     private ProficiencyType proficiency;
+    private Long userId;
 
-    public Skill() {
-    }
+    public SkillDto() {}
 
-    public Skill(String name, ProficiencyType proficiency) {
+    public SkillDto(Long id, String name, ProficiencyType proficiency) {
+        this.id = id;
         this.name = name;
         this.proficiency = proficiency;
     }
@@ -47,5 +38,13 @@ public class Skill {
 
     public void setProficiency(ProficiencyType proficiency) {
         this.proficiency = proficiency;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

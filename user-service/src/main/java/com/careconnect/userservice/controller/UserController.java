@@ -1,9 +1,7 @@
 package com.careconnect.userservice.controller;
 
 import com.careconnect.userservice.entity.*;
-import com.careconnect.userservice.service.CertificationService;
-import com.careconnect.userservice.service.UserDetailsService;
-import com.careconnect.userservice.service.UserServiceImpl;
+import com.careconnect.userservice.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +18,15 @@ public class UserController {
 
     private final UserDetailsService userDetailsService;
     private final CertificationService certificationService;
+    private final LanguageService languageService;
+    private final EducationServiceImpl educationService;
 
-    public UserController(UserServiceImpl userServiceImpl, UserDetailsService userDetailsService, CertificationService certificationService) {
+    public UserController(UserServiceImpl userServiceImpl, UserDetailsService userDetailsService, CertificationService certificationService, LanguageService languageService, EducationServiceImpl educationService) {
         this.userServiceImpl = userServiceImpl;
         this.userDetailsService = userDetailsService;
         this.certificationService =certificationService;
+        this.languageService = languageService;
+        this.educationService = educationService;
     }
 
 //    @GetMapping("/profile/{id}")
@@ -48,6 +50,30 @@ public class UserController {
     @PutMapping("/certificate/{id}")
     public ResponseEntity<CertificationDto> updateCertificate(@RequestBody CertificationDto dto) {
         CertificationDto updated = certificationService.updateCertificate(dto);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PostMapping("/language")
+    public ResponseEntity<LanguageDto> saveLanguage(@RequestBody LanguageDto dto) {
+        LanguageDto saved = languageService.saveLanguage(dto);
+        return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/language/{id}")
+    public ResponseEntity<LanguageDto> updateLanguage(@RequestBody LanguageDto dto) {
+        LanguageDto updated = languageService.updateLanguage(dto.getId(), dto);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PostMapping("/education")
+    public ResponseEntity<EducationDto> saveEducation(@RequestBody EducationDto dto) {
+        EducationDto saved = educationService.saveEducation(dto);
+        return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/education/{id}")
+    public ResponseEntity<EducationDto> updateEducation(@PathVariable Long id, @RequestBody EducationDto dto) {
+        EducationDto updated = educationService.updateEducation(id, dto);
         return ResponseEntity.ok(updated);
     }
 
@@ -103,6 +129,12 @@ public class UserController {
     @DeleteMapping("/certification/{id}")
     public ResponseEntity<Void> deleteCertification(@PathVariable Long id) {
         boolean deleted = certificationService.deleteCertification(id);
+        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/education/{id}")
+    public ResponseEntity<Void> deleteEducation(@PathVariable Long id) {
+        boolean deleted = educationService.deleteEducation(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

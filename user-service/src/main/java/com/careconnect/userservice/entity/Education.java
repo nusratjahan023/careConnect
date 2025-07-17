@@ -1,5 +1,6 @@
 package com.careconnect.userservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,6 +19,14 @@ public class Education {
     private Float score;
     private String description;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_details_id")
+    private UserDetails userDetails;
+
+    public Education() {
+    }
+
     public Education(String institution, String degree, Date startDate, Date endDate, Float score, String description) {
         this.institution = institution;
         this.degree = degree;
@@ -25,6 +34,14 @@ public class Education {
         this.endDate = endDate;
         this.score = score;
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getInstitution() {
@@ -74,4 +91,14 @@ public class Education {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
+
+
 }

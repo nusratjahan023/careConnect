@@ -1,8 +1,7 @@
 package com.careconnect.userservice.service;
 
-import com.careconnect.userservice.entity.AppUser;
-import com.careconnect.userservice.entity.UserDetails;
-import com.careconnect.userservice.entity.UserDetailsDTO;
+import com.careconnect.userservice.entity.*;
+import com.careconnect.userservice.repository.LanguageRepository;
 import com.careconnect.userservice.repository.UserDetailsRepository;
 import com.careconnect.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,9 @@ public class UserDetailsService {
 
     @Autowired
     private UserDetailsRepository userDetailsRepository;
+
+    @Autowired
+    private LanguageRepository languageRepository;
 
     public UserDetailsDTO getUserDetailsByUserId(Long userId) {
         AppUser user = appUserRepository.findById(userId)

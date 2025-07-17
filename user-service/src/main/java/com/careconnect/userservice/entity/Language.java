@@ -12,6 +12,9 @@ public class Language {
     private String name;
     private ProficiencyType proficiency;
 
+    public Language() {
+    }
+
     public Language(String name, ProficiencyType proficiency) {
         this.name = name;
         this.proficiency = proficiency;
