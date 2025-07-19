@@ -38,6 +38,11 @@ public class JobController {
         return ResponseEntity.ok(jobService.getAllJobs());
     }
 
+    @GetMapping("/client/{id}")
+    public ResponseEntity<List<JobPost>> getAllJobsByClientId(@PathVariable Long id) {
+        return ResponseEntity.ok(jobService.getJobsByClientId(id));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<JobPostDTO> getJobById(@PathVariable Long id) {
         return jobService.getJobById(id)

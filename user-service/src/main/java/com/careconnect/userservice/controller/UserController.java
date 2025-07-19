@@ -128,6 +128,39 @@ public class UserController {
         return ResponseEntity.ok(savedUser);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        if (loginRequest.getPassword().isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of(
+                            "error", true,
+                            "errorMessage", "Password is required"
+                    ));
+        }
+
+        if (loginRequest.getEmail().isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of(
+                            "error", true,
+                            "errorMessage", "Email is required"
+                    ));
+        }
+        AppUser authenticatedUser = userServiceImpl.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
+        if (authenticatedUser != null) {
+            return ResponseEntity
+                    .ok(authenticatedUser);
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of(
+                            "error", true,
+                            "errorMessage", "Auth failed"
+                    ));
+        }
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<AppUser> updateUser(@PathVariable Long id, @RequestBody AppUser userDetails) {
         AppUser updatedUser = userServiceImpl.updateUser(id, userDetails);

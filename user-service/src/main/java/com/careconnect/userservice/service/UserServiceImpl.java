@@ -90,4 +90,13 @@ public class UserServiceImpl implements UserService {
         return dto;
     }
 
+    public AppUser authenticate(String email, String password) {
+        AppUser appUser = userRepository.findByEmail(email);
+        if  (appUser != null && appUser.getPassword().equals(password)){
+            return appUser;
+        } else {
+            return null;
+        }
+
+    }
 }

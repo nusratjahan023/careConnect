@@ -33,6 +33,10 @@ public class JobServiceImpl implements JobService {
         return jobRepository.findAll();
     }
 
+    public List<JobPost> getJobsByClientId(Long id) {
+        return jobRepository.findByClientId(id);
+    }
+
     @Override
     public Optional<JobPost> getJobById(Long id) {
         return jobRepository.findById(id);

@@ -15,4 +15,6 @@ public interface JobService {
     JobPost assignCaregiver(Long jobId, Long careGiverId);
 
     JobApplication completeJob(Long jobPostId, Long caregiverId);
+
+    List<JobPost> getJobsByClientId(Long id);
 }
