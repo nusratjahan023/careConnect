@@ -16,10 +16,15 @@ public class JobPost {
     private Long clientId;
 
     private String title;
+    @Lob
+    @Column(name = "description", nullable = true, columnDefinition = "TEXT")
     private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String location;
+
+    @Lob
+    @Column(name = "requirements", nullable = true, columnDefinition = "TEXT")
     private String requirements;
 
     @Enumerated(EnumType.STRING)
