@@ -25,7 +25,7 @@ To build the project and resolve dependencies, run:
 ```bash
 mvn clean install
 ```
-
+To run the service, run:
 ```bash
 mvn spring-boot:run
 ```
@@ -44,7 +44,7 @@ To build the project and resolve dependencies, run:
 ```bash
 mvn clean install
 ```
-
+To run the service, run:
 ```bash
 mvn spring-boot:run
 ```
