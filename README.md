@@ -8,9 +8,23 @@ Make sure you have the following installed:
 
 - [Java JDK 17+](https://adoptopenjdk.net/) (or compatible version)
 - [Maven](https://maven.apache.org/) 3.6+
+- [PostgreSQL](https://www.postgresql.org/) running on `localhost:5432`
 
+### PostgreSQL Configuration
 
+Ensure a PostgreSQL database is running with the following credentials:
 
+- **Host:** `localhost`
+- **Port:** `5432`
+- **Database Name:** `careConnect`
+- **Username:** `postgres`
+- **Password:** `careConnect`
+
+You can create the database manually by running:
+
+```sql
+CREATE DATABASE careConnect;
+```
 
 ## 🔧 Build the user-service
 
