@@ -1,6 +1,6 @@
 package com.careconnect.userservice.service.impl;
 
-import com.careconnect.userservice.entity.JobExperienceDto;
+import com.careconnect.userservice.dto.JobExperienceDto;
 import com.careconnect.userservice.entity.JobExperience;
 import com.careconnect.userservice.repository.JobExperienceRepository;
 import com.careconnect.userservice.service.JobExperienceService;

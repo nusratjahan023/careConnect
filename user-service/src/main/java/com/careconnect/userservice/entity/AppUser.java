@@ -1,6 +1,6 @@
 package com.careconnect.userservice.entity;
 
-import com.careconnect.userservice.Enums.Role;
+import com.careconnect.userservice.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 

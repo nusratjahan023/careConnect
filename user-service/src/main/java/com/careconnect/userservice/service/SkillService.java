@@ -1,6 +1,6 @@
 package com.careconnect.userservice.service;
 
-import com.careconnect.userservice.entity.SkillDto;
+import com.careconnect.userservice.dto.SkillDto;
 
 import java.util.List;
 

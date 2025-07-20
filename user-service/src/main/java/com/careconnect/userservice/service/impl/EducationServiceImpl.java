@@ -1,10 +1,11 @@
-package com.careconnect.userservice.service;
+package com.careconnect.userservice.service.impl;
 
 import com.careconnect.userservice.entity.AppUser;
-import com.careconnect.userservice.entity.EducationDto;
+import com.careconnect.userservice.dto.EducationDto;
 import com.careconnect.userservice.entity.Education;
 import com.careconnect.userservice.repository.EducationRepository;
 import com.careconnect.userservice.repository.UserRepository;
+import com.careconnect.userservice.service.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

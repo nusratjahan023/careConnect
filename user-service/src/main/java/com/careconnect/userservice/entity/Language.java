@@ -1,6 +1,6 @@
 package com.careconnect.userservice.entity;
 
-import com.careconnect.userservice.Enums.ProficiencyType;
+import com.careconnect.userservice.enums.ProficiencyType;
 import jakarta.persistence.*;
 
 @Entity

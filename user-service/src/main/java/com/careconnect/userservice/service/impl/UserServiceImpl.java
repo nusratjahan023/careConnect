@@ -1,11 +1,12 @@
-package com.careconnect.userservice.service;
+package com.careconnect.userservice.service.impl;
 
-import com.careconnect.userservice.Enums.Role;
+import com.careconnect.userservice.enums.Role;
 import com.careconnect.userservice.entity.AppUser;
-import com.careconnect.userservice.entity.AppUserDTO;
+import com.careconnect.userservice.dto.AppUserDTO;
 import com.careconnect.userservice.entity.UserDetails;
-import com.careconnect.userservice.entity.UserDetailsDTO;
+import com.careconnect.userservice.dto.UserDetailsDTO;
 import com.careconnect.userservice.repository.UserRepository;
+import com.careconnect.userservice.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -97,6 +98,5 @@ public class UserServiceImpl implements UserService {
         } else {
             return null;
         }
-
     }
 }

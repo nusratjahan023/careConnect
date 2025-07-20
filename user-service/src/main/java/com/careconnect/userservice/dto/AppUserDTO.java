@@ -1,6 +1,6 @@
-package com.careconnect.userservice.entity;
+package com.careconnect.userservice.dto;
 
-import com.careconnect.userservice.Enums.Role;
+import com.careconnect.userservice.enums.Role;
 
 public class AppUserDTO {
     private Long id;

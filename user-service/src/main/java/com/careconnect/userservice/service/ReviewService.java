@@ -1,6 +1,6 @@
 package com.careconnect.userservice.service;
 
-import com.careconnect.userservice.entity.ReviewDto;
+import com.careconnect.userservice.dto.ReviewDto;
 
 import java.util.List;
 

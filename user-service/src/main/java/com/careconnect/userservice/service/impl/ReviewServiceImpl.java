@@ -1,7 +1,7 @@
 package com.careconnect.userservice.service.impl;
 
 import com.careconnect.userservice.entity.AppUser;
-import com.careconnect.userservice.entity.ReviewDto;
+import com.careconnect.userservice.dto.ReviewDto;
 import com.careconnect.userservice.entity.Review;
 import com.careconnect.userservice.repository.ReviewRepository;
 import com.careconnect.userservice.repository.UserRepository;
@@ -9,10 +9,7 @@ import com.careconnect.userservice.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -64,7 +61,6 @@ public class ReviewServiceImpl implements ReviewService {
 
         return convertToDto(savedReview);
     }
-
 
     @Override
     public ReviewDto updateReview(Long id, ReviewDto reviewDto) {

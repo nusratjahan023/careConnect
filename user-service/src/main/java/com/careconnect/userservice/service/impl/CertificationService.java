@@ -1,8 +1,8 @@
-package com.careconnect.userservice.service;
+package com.careconnect.userservice.service.impl;
 
 import com.careconnect.userservice.entity.AppUser;
 import com.careconnect.userservice.entity.Certification;
-import com.careconnect.userservice.entity.CertificationDto;
+import com.careconnect.userservice.dto.CertificationDto;
 import com.careconnect.userservice.repository.CertificationRepository;
 import com.careconnect.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package com.careconnect.userservice.service;
+package com.careconnect.userservice.service.impl;
 
 import com.careconnect.userservice.entity.Language;
-import com.careconnect.userservice.entity.LanguageDto;
+import com.careconnect.userservice.dto.LanguageDto;
 import com.careconnect.userservice.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

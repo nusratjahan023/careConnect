@@ -1,6 +1,6 @@
-package com.careconnect.userservice.entity;
+package com.careconnect.userservice.dto;
 
-import com.careconnect.userservice.Enums.ProficiencyType;
+import com.careconnect.userservice.enums.ProficiencyType;
 
 public class SkillDto {
     private Long id;

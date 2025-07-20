@@ -1,4 +1,4 @@
-package com.careconnect.userservice.Enums;
+package com.careconnect.userservice.enums;
 
 public enum ProficiencyType {
     BEGINNER,

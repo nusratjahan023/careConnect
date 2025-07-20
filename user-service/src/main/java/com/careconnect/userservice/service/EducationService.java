@@ -1,6 +1,6 @@
 package com.careconnect.userservice.service;
 
-import com.careconnect.userservice.entity.EducationDto;
+import com.careconnect.userservice.dto.EducationDto;
 
 import java.util.List;
 

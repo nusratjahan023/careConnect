@@ -1,5 +1,6 @@
-package com.careconnect.userservice.service;
+package com.careconnect.userservice.service.impl;
 
+import com.careconnect.userservice.dto.UserDetailsDTO;
 import com.careconnect.userservice.entity.*;
 import com.careconnect.userservice.repository.LanguageRepository;
 import com.careconnect.userservice.repository.UserDetailsRepository;
@@ -19,14 +20,6 @@ public class UserDetailsService {
     @Autowired
     private LanguageRepository languageRepository;
 
-    public UserDetailsDTO getUserDetailsByUserId(Long userId) {
-        AppUser user = appUserRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        UserDetails userDetails = user.getUserDetails(); // Assuming 1:1 relation
-        return mapToDTO(userDetails);
-    }
-
     public void saveUserDetails(Long userId, UserDetailsDTO dto) {
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -34,17 +27,6 @@ public class UserDetailsService {
         UserDetails userDetails = mapFromDTO(dto);
         user.setUserDetails(userDetails); // Link to user
         appUserRepository.save(user);
-    }
-
-    private UserDetailsDTO mapToDTO(UserDetails userDetails) {
-        UserDetailsDTO dto = new UserDetailsDTO();
-        dto.setBio(userDetails.getBio());
-        dto.setCertifications(userDetails.getCertifications());
-        dto.setSkills(userDetails.getSkills());
-        dto.setEducations(userDetails.getEducations());
-        dto.setJobExperiences(userDetails.getJobExperiences());
-        dto.setLanguages(userDetails.getLanguages());
-        return dto;
     }
 
     private UserDetails mapFromDTO(UserDetailsDTO dto) {

@@ -1,6 +1,6 @@
 package com.careconnect.userservice.service.impl;
 
-import com.careconnect.userservice.entity.SkillDto;
+import com.careconnect.userservice.dto.SkillDto;
 import com.careconnect.userservice.entity.Skill;
 import com.careconnect.userservice.repository.SkillRepository;
 import com.careconnect.userservice.service.SkillService;

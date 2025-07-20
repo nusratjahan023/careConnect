@@ -1,4 +1,4 @@
-package com.careconnect.userservice.entity;
+package com.careconnect.userservice.dto;
 
 import java.util.Date;
 

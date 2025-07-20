@@ -1,6 +1,6 @@
 package com.careconnect.userservice.service;
 
-import com.careconnect.userservice.entity.JobExperienceDto;
+import com.careconnect.userservice.dto.JobExperienceDto;
 
 import java.util.List;
 

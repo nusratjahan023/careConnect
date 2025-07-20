@@ -1,6 +1,6 @@
 package com.careconnect.userservice.repository;
 
-import com.careconnect.userservice.Enums.Role;
+import com.careconnect.userservice.enums.Role;
 import com.careconnect.userservice.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
